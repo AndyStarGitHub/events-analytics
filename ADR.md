@@ -52,7 +52,7 @@
 
 ---
 
-### 2.5. Observability
+### 2.5. Нагляд
 - `/metrics` — метрики **Prometheus** (`http_requests_total`, `http_request_duration_seconds`).
 - `/healthz` — стан сервісу та БД.
 - JSON-логи формату:
