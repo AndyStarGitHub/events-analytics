@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: events
+      POSTGRES_USER: events
+      POSTGRES_PASSWORD: events
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U events -d events"]
+      interval: 3s
+      retries: 10
+
+  app:
+    build: .
+    env_file: [.env]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports: ["8000:8000"]
+    volumes:
+      - ./data:/data
+
+  adminer:
+    image: adminer
+    ports: ["8080:8080"]
+
+volumes:
+  pgdata:
