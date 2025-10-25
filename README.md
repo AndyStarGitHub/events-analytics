@@ -11,11 +11,9 @@ Events Analytics — це мікросервіс на FastAPI + PostgreSQL, як
 
 📈 Аналітика користувачів
 
-```
-GET /stats/dau — щоденні активні користувачі (DAU)
-GET /stats/top-events — найпопулярніші типи подій
-GET /stats/retention — утримання користувачів по днях
-```
+- GET /stats/dau — щоденні активні користувачі (DAU)
+- GET /stats/top-events — найпопулярніші типи подій
+- GET /stats/retention — утримання користувачів по днях
 
 🧾 CLI-інструмент для масового імпорту CSV
 
@@ -94,19 +92,16 @@ python tools/gen_csv.py data/events.csv --rows 50000
 ```
 
 Результат:
-```
-Wrote 50000 rows to data/events.csv
-```
+- Wrote 50000 rows to data/events.csv
 
 🧩 Формат згенерованих подій
-```
+
 event_id,occurred_at,user_id,event_type,properties_json
 6d1d4fae-7dec-11d0-a765-00a0c91e6bf6,2025-10-19T10:00:00Z,u1,login,{"device":"mobile"}
 d81d4fae-7dec-11d0-a765-00a0c91e6bf6,2025-10-20T12:30:00Z,u2,view,{"page":"home"}
-```
+
 
 💡 Для чого потрібен цей скрипт
-
 - Перевірити швидкість імпорту (app.cli.import_events) при різному обсязі даних.
 - Реалістично наповнити базу подіями для тестування аналітики (/stats/*).
 - Провести локальні бенчмарки перед розгортанням.
@@ -137,15 +132,15 @@ docker compose run --rm app python -m app.cli.import_events /data/events.csv --b
 ```
 
 🧾 Приклад логу імпорту:
-2025-10-24 16:30:34 [info] import_start batch_size=5000 path=/data/events.csv
-2025-10-24 16:30:35 [info] import_batch_done accepted=5000 read=5000 skipped=0 total_accepted=5000 total_read=5000 total_skipped=0
-2025-10-24 16:30:47 [info] import_complete total_accepted=50000 total_read=50000 total_skipped=0
+- 2025-10-24 16:30:34 [info] import_start batch_size=5000 path=/data/events.csv
+- 2025-10-24 16:30:35 [info] import_batch_done accepted=5000 read=5000 skipped=0 total_accepted=5000 total_read=5000 total_skipped=0
+- 2025-10-24 16:30:47 [info] import_complete total_accepted=50000 total_read=50000 total_skipped=0
 
 
 📊 після завершення можна перевірити в Adminer або через SQL:
 
-SELECT COUNT(*) FROM events;
-SELECT MIN(occurred_at), MAX(occurred_at) FROM events;
+ SELECT COUNT(*) FROM events;
+ SELECT MIN(occurred_at), MAX(occurred_at) FROM events;
 
 📊 Приклади результатів аналітики
 🔹 Щоденні активні користувачі (DAU)
@@ -192,8 +187,9 @@ docker compose exec -e TESTING=1 app pytest -q
 ```
 
 Перегляд логів:
-
+```bash
 docker compose logs -f --tail=100 app | findstr /i access
+```
 
 📈 Метрики Prometheus
 
@@ -210,6 +206,7 @@ CREATE INDEX IF NOT EXISTS ix_events_user_id      ON events (user_id);
 CREATE INDEX IF NOT EXISTS ix_events_occurred_at  ON events (occurred_at);
 
 🧩 Архітектура
+```
 FastAPI ──► SQLAlchemy (async)
     │
     ├── /events          → ідемпотентне приймання подій
@@ -218,3 +215,4 @@ FastAPI ──► SQLAlchemy (async)
     ├── /stats/retention → утримання
     ├── /metrics         → метрики Prometheus
     └── /healthz         → стан сервісу
+```
