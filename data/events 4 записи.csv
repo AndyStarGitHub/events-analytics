@@ -1,0 +1,5 @@
+event_id,occurred_at,user_id,event_type,properties_json
+f81d4fae-7dec-11d0-a765-00a0c91e6bf6,2025-10-20T10:00:00Z,u1,login,{"country":"UA","device":"mobile"}
+7f2e7f0e-4d2d-4b76-9b1a-2a2c0f3a5c0e,2025-10-20T11:00:00+00:00,u2,purchase,{"amount":12.5,"currency":"USD"}
+g81d4fae-7dec-11d0-a765-00a0c91e6bf6,2025-10-19T10:00:00Z,u1,login,{"country":"UA","device":"mobile"}
+8f2e7f0e-4d2d-4b76-9b1a-2a2c0f3a5c0e,2025-10-19T11:00:00+00:00,u2,purchase,{"amount":11.5,"currency":"UAH"}
