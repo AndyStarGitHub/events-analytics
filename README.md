@@ -110,7 +110,7 @@ docker compose exec -e TESTING=1 app pytest -q
 # ⚡ Продуктивність
 
 ## Налаштування стенду
-- Машина: <Windows 10, CPU Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz, RAM 8ГБ, версію Docker>
+- Машина: <Windows 10, CPU Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz, RAM 8ГБ>
 - База: PostgreSQL 16 (docker), індекси: `event_id` (unique), `event_type`, `user_id`, `occurred_at`
 - Розмір даних: **{156 011}** подій  
   Діапазон: **{2025-08-01} … {2025-10-20}**
@@ -128,7 +128,7 @@ docker compose exec -e TESTING=1 app pytest -q
 | Сценарій                  | Параметри              | Час, мс    |
 |---------------------------|------------------------|------------|
 | DAU за 1 день             | 2025-10-20             | 0.014050 s |
-| Імпорт 100k (batch=5000)  | total_accepted=100 000 | 4,325582 s |
+| Імпорт 100k (batch=5000)  | total_accepted=100 000 | 4.325582 s |
 
 > Примітка: значення можуть коливатись залежно від навантаження, кешів ОС/БД, параметрів Docker.
 
