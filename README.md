@@ -18,7 +18,6 @@
 ---
 
 ## 🧰 Запуск проєкту
-
 ```bash
 docker compose up -d
 ```
@@ -94,7 +93,7 @@ docker compose exec -e TESTING=1 app pytest -q
 
 ---
 
-## 📈 Нагляд
+## 📈 Спостереження
 
 - `/metrics` — метрики Prometheus (latency, http_requests_total)
 - `/healthz` — стан сервісу
